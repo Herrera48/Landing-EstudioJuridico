@@ -1,68 +1,58 @@
-# Landing · Estudio Jurídico Bonzani Rinaldi & Asociados (v2)
+# Bonzani Rinaldi — revisión visual
 
-Página única estática (HTML + CSS + JavaScript, sin frameworks ni dependencias). Se puede publicar tal cual en cualquier hosting estático.
+Landing de una sola página en HTML, CSS y JavaScript. Carpeta local de trabajo `landing-v2`, basada en la rama `claude/zen-fermi-xcv968`. La primera versión está conservada en la carpeta hermana `landing`. El sitio continúa en revisión, sin despliegue público.
 
-**Estado: borrador para revisar. No está publicado.**
+## Cambios de esta revisión
 
-## Archivos
+- Portada centrada con los dos apellidos en idéntico estilo, sin leyendas adicionales. Dirección, consulta y Google con más presencia.
+- Foto elegida entre las cuatro suministradas por el usuario: `Palacio-de-Justicia-e1769450184506.jpg`, copiada sin alteración como `assets/img/palacio-justicia.jpg`. No se atribuye una licencia externa no verificada. Las imágenes anteriores ya no se usan en la portada.
+- Se conserva el monograma BR y el encabezado; nueva tipografía más simple fuera de las áreas y contacto.
+- Áreas de práctica rediseñadas como cuatro tarjetas iguales, con iconos, títulos en dos líneas y acción al pie; dos columnas en tablet y una en celular. Contacto conserva la composición, con teléfono/email eliminados y sin la leyenda anterior.
+- Carrusel de clientes con título limpio y sin botón de pausa. Movimiento continuo con pausa al pasar el mouse o enfocar; con movimiento reducido se presenta la lista fija. Los nombres vienen de la web anterior; faltan los logos autorizados.
+- Socios al mismo nivel: retratos pendientes representados por siluetas neutras; nombre, Socio, Abogado · UNC, LinkedIn, WhatsApp y Email. Sin frases, especialidades ni botones de consulta por profesional.
+- Los tres botones personales se ven desactivados hasta cargar datos confirmados en `config.js`. No abren contactos inventados.
+- Testimonios inspirados en la referencia Mogliani: título superpuesto, barra de puntuación, botón azul y tarjetas suaves con atribución de Google. Se mantienen dos extractos verificados como respaldo, sin cantidad de opiniones.
 
-| Archivo | Para qué sirve |
-|---|---|
-| `index.html` | Estructura, contenido y SEO básico (meta, Open Graph, JSON-LD `LegalService`). |
-| `styles.css` | Diseño: colores, tipografía, layout, botones, movimiento. |
-| `app.js` | Menú, encabezado, sección activa, aparición al scroll, carrusel, formulario/modal. |
-| `config.js` | **Datos de contacto centralizados** (teléfono, WhatsApp, email, Google, contactos de los socios). |
-| `favicon.svg` | Monograma BR. |
-| `assets/fonts/` | Newsreader e Instrument Sans (woff2, solo latín, autoalojadas) + licencias OFL. |
+## Reseñas automáticas
 
-## Cómo actualizar datos
+Ver `REVIEWS.md`. La conexión está implementada pero **todavía no está activada**: falta autorizar la cuenta del Perfil de Empresa y configurar sus credenciales. Con Google Business Profile se solicitan las seis opiniones con actualizaciones más recientes y el promedio. Alternativa opcional: Places API entrega hasta cinco opiniones por relevancia y puede tener costo.
 
-- **Contacto general**: editar `config.js`. El HTML trae los mismos valores como respaldo si JavaScript no carga; si cambia un dato, conviene actualizarlo también en `index.html` (buscar el valor viejo) y en el JSON-LD del `<head>`.
-- **Contacto personal de los socios**: completar `socios.bonzani` / `socios.rinaldi` en `config.js` con `whatsapp` (formato `549351...`, sin `+`) y/o `email`. Al haber datos, el perfil muestra los botones de WhatsApp y Email personales. Mientras estén en `null`, se muestra “Consultar por …”, que abre el formulario indicando el profesional y avisa que la consulta la recibe el contacto general.
-- **Reseña en Google**: si se consigue el enlace directo para escribir reseñas (`https://g.page/r/.../review`, desde el Perfil de Empresa), ponerlo en `google.escribirResena`. Mientras tanto el botón abre la ficha.
-- **Clientes**: lista `<ul class="marquee-list">` en `index.html`. Para un logo autorizado, reemplazar el texto del `<li>` por `<img src="assets/clientes/archivo.svg" alt="Nombre" height="40">`.
+`reviews.js` actualiza el contenido al cargar y cada cinco minutos visibles. `api/google-reviews.js` mantiene las credenciales en el servidor. Si no se puede conectar se conserva el contenido existente; no se muestra un aviso de sincronización falso. La ficha sola o su enlace compartido no da acceso automático a las reseñas.
 
-## Formulario: cómo funciona
+## Datos editables
 
-“Agendar cita”, “Quiero asesoramiento”, cada área de práctica y los botones de los socios abren el mismo modal. Al abrirlo desde un área, esa área queda seleccionada.
+`config.js`: contacto general, dirección, horarios, enlaces Google y datos personales de cada socio. Los valores HTML sirven de respaldo sin JavaScript; actualizar también estos respaldos y el JSON-LD si cambian datos del negocio.
 
-La página **no envía nada**: valida los datos y arma el mensaje. “Preparar mensaje en WhatsApp” abre WhatsApp con el texto escrito hacia el número del estudio; “Preparar email” abre el programa de correo. La persona revisa y envía. El modal lo explica y, después, aclara que el mensaje todavía no fue enviado y que el estudio confirmará día y horario. No hay reservas ni confirmaciones simuladas.
+## Formulario
 
-Accesibilidad del modal: `<dialog>` nativo, cierre con Escape, botón Cerrar o clic fuera; foco contenido con Tab/Shift+Tab; el foco vuelve al botón que lo abrió. Errores junto a cada campo (`aria-invalid` + `aria-describedby`). En celular se muestra como hoja inferior.
+Un modal para el botón principal, encabezado, contacto y áreas de práctica. Al consultar por un área queda seleccionada; al abrir una consulta general se selecciona Otra consulta. Los canales generales anteriores se retiraron porque el usuario confirmó que eran incorrectos: config.js contiene telefono, whatsapp y email en null, sin respaldos de esos datos ni metadatos. El modal sigue disponible como vista previa y sus botones de envío están desactivados hasta configurar canales válidos. El botón flotante muestra ese modal; no abre el número anterior.
 
-## Movimiento
+## Vista previa y despliegue
 
-Aparición progresiva de secciones (opacidad + 18 px), entrada escalonada de áreas, socios y reseñas, encabezado que pasa de transparente a sólido, subrayado de la sección activa, carrusel continuo de clientes (se pausa al pasar el mouse, al enfocar o con el botón Pausar).
+Abrir `http://127.0.0.1:4174` mientras corre el servidor local de la carpeta superior. Ese servidor ejecuta también el endpoint de reseñas, que devuelve 503 cuando faltan credenciales.
 
-- Con `prefers-reduced-motion` no hay desplazamientos ni carrusel animado (la lista queda estática).
-- Si JavaScript no carga, todo el contenido queda visible (hay un respaldo a los 3 s).
+En Vercel: raíz de proyecto esta carpeta, preset Other, sin build. Las funciones de `api/` se ejecutan en el servidor. `vercel.json` incluido. Revisar el plan elegido: Hobby está limitado a uso personal no comercial, según https://vercel.com/docs/plans/hobby . No se eligió ni activó un servicio de pago.
 
-## Fuentes y datos verificados
+## Verificación
 
-Datos tomados del proyecto v1 (que a su vez los tomó de la web actual https://estudiobonzanirinaldi.online/ y de la ficha de Google https://share.google/bdxVpSeGXEgWI7CLY): dirección, teléfono, WhatsApp, email, horario, nombres y descripción de los socios, nombres de clientes, puntuación 5,0 y las dos reseñas. No se agregaron datos nuevos ni cantidad de reseñas.
+- Navegador: escritorio de 1440 px y celular de 375 px. Se comprobó imagen, título idéntico, socios alineados, tarjetas y ausencia de desborde horizontal; menú y modal; selección de área y validación sin enviar consultas reales.
+- Pruebas del endpoint y renderizado de Google, con fetch simulado: `node --test tests/google-reviews.test.cjs`.
+- JavaScript y diff comprobados. No se hizo ninguna consulta real a APIs de reseñas ni se enviaron mensajes.
 
-Recursos de terceros:
+## Fuentes y pendientes
 
-- Tipografías: [Newsreader](https://github.com/productiontype/Newsreader) e [Instrument Sans](https://github.com/Instrument/instrument-sans), SIL Open Font License 1.1 (vía Fontsource).
-- Iconos: [Lucide](https://lucide.dev) (ISC). Logos de WhatsApp y Google: [Simple Icons](https://simpleicons.org) (CC0), usados solo para identificar esos servicios.
+Datos del estudio y extractos: https://estudiobonzanirinaldi.online/ y https://share.google/bdxVpSeGXEgWI7CLY , comprobados en la primera revisión. El texto del nombre comercial en metadatos/JSON-LD conserva la denominación de la ficha; el título visible de portada es únicamente Bonzani Rinaldi.
 
-## Pendientes
+Pendientes: fotografías reales de socios, sus contactos personales y perfiles LinkedIn, logos de clientes, confirmación final de áreas y datos del negocio, conexión de reseñas con la cuenta administradora y elección de hosting.
 
-1. **Foto de portada de Córdoba.** No se pudo descargar ni verificar una imagen en esta sesión (el entorno no tenía acceso a Wikimedia Commons, Unsplash, Pexels ni Flickr). La portada funciona sin foto (fondo azul profundo con el monograma). Para agregarla:
-   - Elegir en Wikimedia Commons una foto de Córdoba, Argentina, horizontal y de buena resolución, con licencia CC0, dominio público, CC BY o CC BY-SA, y anotar autor, licencia y URL.
-   - Ojo: Argentina no tiene “libertad de panorama”; para fotos de edificios modernos conviene preferir monumentos históricos (Catedral, Cabildo, Manzana Jesuítica, Paseo del Buen Pastor, Capuchinos) o vistas urbanas/paisaje.
-   - Exportar a `assets/img/` en 1920 px y 960 px de ancho (WebP calidad ~78 + JPG de respaldo, idealmente < 300 KB).
-   - Seguir las instrucciones del comentario dentro de `.hero-media` en `index.html`, agregar la clase `hero--foto` y completar el crédito (`.hero-credit` y footer). El punto focal para recorte móvil se ajusta con `style="--hero-focus: 60% 50%"` en la sección.
-2. WhatsApp y email personales de cada socio (`config.js`).
-3. Logotipos autorizados de los clientes.
-4. Confirmación definitiva de las áreas de práctica con los socios.
-5. Retratos de los socios (hoy hay placas con iniciales; no se inventaron retratos, matrículas ni antecedentes).
-6. Enlace directo verificado para escribir reseñas en Google (opcional).
+Recursos: Newsreader e Instrument Sans (SIL OFL, licencias en assets/fonts); Lucide (ISC). La portada actual fue proporcionada por el usuario.
 
-## Vista previa local
+## Ajuste de portada, testimonios y movimiento
 
-```
-python -m http.server 8000
-```
+La foto de 1280 × 678 px se conserva sin reconstrucción generativa: se presenta como textura secundaria con una capa azul uniforme y monograma BR tenue. Para mejorar el detalle real hace falta un original de mayor resolución; la capa no recupera detalle perdido. El encabezado es claro, Google Reviews usa el símbolo de color y no muestra el conteo. WhatsApp tiene halo, sombra y hover, con destino pendiente.
 
-y abrir http://localhost:8000.
+motion.js y motion.css sustituyen el revelado anterior: entrada de 30 px con escala .985 y duración 780–860 ms, botones y contenido escalonados, reaparición después de salir del área visible, observación de reseñas añadidas y respeto de movimiento reducido. Sin JavaScript el contenido queda visible. Verificado en navegador a 1440 y 375 px; no hay desbordamiento horizontal ni enlaces a los canales retirados.
+
+## Jerarquía de portada y nuevas áreas
+
+El nombre usa Newsreader 500 con el mismo tamaño, color y peso en ambos apellidos, hasta 116.8 px en escritorio y dos líneas en celular. La dirección y el CTA mantienen presencia y el bloque Google es secundario. Las tarjetas de áreas son botones completos, con foco visible, elevación al hover y selección de motivo conservada. Se comprobó en 1440, 900 y 375 px, sin desbordes, y la consulta laboral abre con Derecho laboral seleccionado.

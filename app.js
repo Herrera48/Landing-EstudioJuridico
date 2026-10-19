@@ -39,6 +39,18 @@
       var value = texts[el.getAttribute("data-contact-text")];
       if (value) el.textContent = value;
     });
+    $$('.form-actions button[type="submit"]').forEach(function (button) {
+      var available = button.value === 'email' ? !!C.email : !!C.whatsapp;
+      button.disabled = !available;
+      if (available) button.lastChild.textContent = button.value === 'email' ? 'Preparar email' : 'Preparar mensaje en WhatsApp';
+    });
+    if (C.email || C.whatsapp) $('#dialog-desc').textContent = 'Completá tus datos y prepará tu consulta. Vas a poder revisarla antes de enviarla; el estudio confirmará la cita.';
+    var floating = $('.wa-float');
+    if (floating && C.whatsapp) {
+      floating.setAttribute('aria-label', 'Contactar al estudio por WhatsApp');
+      floating.removeAttribute('data-consulta');
+      floating.addEventListener('click', function () { window.open(waLink(C.whatsapp), '_blank', 'noopener,noreferrer'); });
+    }
   }
 
   /* ---------- Perfiles de los socios ---------- */
@@ -50,21 +62,25 @@
       var box = $("[data-person-actions]", card);
       if (!data || !box) return;
 
-      if (data.whatsapp || data.email) {
-        box.innerHTML = "";
-        if (data.whatsapp) {
-          box.appendChild(actionLink(waLink(data.whatsapp), "WhatsApp", "i-whatsapp", "btn btn-ghost btn-sm btn-wa", "Escribir por WhatsApp a " + data.nombre));
-        }
-        if (data.email) {
-          box.appendChild(actionLink("mailto:" + data.email, "Email", "i-mail", "btn btn-ghost btn-sm", "Enviar un email a " + data.nombre));
-        }
-      } else {
-        var hint = document.createElement("p");
-        hint.className = "person-hint";
-        hint.textContent = "Por ahora las consultas se coordinan por el contacto general del estudio.";
-        box.appendChild(hint);
-      }
+      box.replaceChildren();
+      box.appendChild(partnerAction(data.whatsapp ? waLink(data.whatsapp) : null, "WhatsApp", "i-whatsapp", "btn btn-ghost btn-sm btn-wa", data.nombre));
+      box.appendChild(partnerAction(data.email ? "mailto:" + data.email : null, "Email", "i-mail", "btn btn-ghost btn-sm", data.nombre));
+      var linkedin = $("[data-person-linkedin]", card);
+      if (linkedin) linkedin.replaceChildren(partnerAction(data.linkedin, "", "i-linkedin", "linkedin-btn", "LinkedIn de " + data.nombre));
     });
+  }
+
+  function partnerAction(href, label, icon, className, name) {
+    if (href) return actionLink(href, label, icon, className, label ? label + " de " + name : name);
+    var button = document.createElement("button");
+    button.type = "button";
+    button.disabled = true;
+    button.className = className;
+    button.title = (label || "LinkedIn") + " pendiente de conectar";
+    button.setAttribute("aria-label", (label || "LinkedIn") + ", pendiente de conectar");
+    button.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#' + icon + '"/></svg>';
+    if (label) button.appendChild(document.createTextNode(label));
+    return button;
   }
 
   function actionLink(href, label, icon, className, aria) {
@@ -137,36 +153,11 @@
     sections.forEach(function (s) { io.observe(s); });
   }
 
-  /* ---------- Aparición progresiva ---------- */
-  function initReveal() {
-    var groups = [".practice-list > li", ".team > .person", ".quotes > .quote"];
-    groups.forEach(function (sel) {
-      $$(sel).forEach(function (el, i) { el.style.setProperty("--d", i * 90 + "ms"); });
-    });
-    $$(".hero .reveal").forEach(function (el, i) { el.style.setProperty("--d", 80 + i * 90 + "ms"); });
-
-    var items = $$(".reveal");
-    if (!("IntersectionObserver" in window) || reduceMotion.matches) {
-      items.forEach(function (el) { el.classList.add("is-in"); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-in");
-        io.unobserve(entry.target);
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    items.forEach(function (el) { io.observe(el); });
-  }
-
   /* ---------- Carrusel de clientes ---------- */
   function initMarquee() {
     var marquee = $("[data-marquee]");
-    var toggle = $(".clients-toggle");
-    if (!marquee || !toggle) return;
+    if (!marquee) return;
     var list = $(".marquee-list", marquee);
-    var toggleLabel = $("[data-toggle-label]", toggle);
     var track = null;
 
     function start() {
@@ -182,7 +173,6 @@
       marquee.classList.add("is-running");
       var width = list.getBoundingClientRect().width;
       marquee.style.setProperty("--marquee-duration", Math.max(24, Math.round(width / 40)) + "s");
-      toggle.hidden = false;
     }
     function stop() {
       if (!track) return;
@@ -190,15 +180,7 @@
       track.remove();
       track = null;
       marquee.classList.remove("is-running", "is-paused");
-      toggle.hidden = true;
-      toggle.setAttribute("aria-pressed", "false");
-      toggleLabel.textContent = "Pausar";
     }
-    toggle.addEventListener("click", function () {
-      var paused = marquee.classList.toggle("is-paused");
-      toggle.setAttribute("aria-pressed", String(paused));
-      toggleLabel.textContent = paused ? "Reanudar" : "Pausar";
-    });
     function sync() { if (reduceMotion.matches) stop(); else start(); }
     reduceMotion.addEventListener("change", sync);
     sync();
@@ -258,7 +240,7 @@
     var socioKey = trigger ? trigger.getAttribute("data-socio-ref") : "";
     var socio = socioKey && C.socios ? C.socios[socioKey] : null;
 
-    if (area) areaSelect.value = area;
+    areaSelect.value = area || "Otra consulta";
     socioInput.value = socio ? socio.nombre : "";
     if (socio) {
       socioNote.innerHTML = "";
@@ -358,6 +340,11 @@
     e.preventDefault();
     attempted = true;
     var channel = e.submitter && e.submitter.value === "email" ? "email" : "whatsapp";
+    if (!(channel === 'email' ? C.email : C.whatsapp)) {
+      status.className = 'form-status';
+      status.textContent = 'Este canal de contacto estará disponible próximamente.';
+      return;
+    }
     var fields = ["nombre", "telefono", "email", "area", "caso"].map(function (n) { return form.elements[n]; });
     var invalid = fields.filter(function (el) { return !validateField(el); });
     if (invalid.length) {
@@ -378,17 +365,17 @@
     var text = buildMessage(data);
 
     if (channel === "whatsapp") {
-      var win = window.open(waLink(C.whatsapp || "5493512086810", text), "_blank");
+      var win = window.open(waLink(C.whatsapp, text), "_blank");
       if (win) win.opener = null;
-      else window.location.href = waLink(C.whatsapp || "5493512086810", text);
+      else window.location.href = waLink(C.whatsapp, text);
       status.className = "form-status is-ok";
       status.textContent = "Abrimos WhatsApp con tu consulta escrita. Todavía no fue enviada: revisala y tocá Enviar. El estudio te responderá para confirmar día y horario.";
     } else {
       var subject = "Solicitud de cita · " + data.area + " · " + data.nombre;
-      window.location.href = "mailto:" + (C.email || "info@estudiobonzanirinaldi.online") +
+      window.location.href = "mailto:" + C.email +
         "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
       status.className = "form-status is-ok";
-      status.textContent = "Preparamos el email en tu programa de correo. Todavía no fue enviado: revisalo y envialo desde ahí. Si no se abrió, escribinos a " + (C.email || "info@estudiobonzanirinaldi.online") + ".";
+      status.textContent = "Preparamos el email en tu programa de correo. Todavía no fue enviado: revisalo y envialo desde ahí.";
     }
   });
 
@@ -398,9 +385,7 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
   initActiveNav();
-  initReveal();
   initMarquee();
-  initFloat();
   var year = $("#year");
   if (year) year.textContent = new Date().getFullYear();
   window.__landingReady = true;

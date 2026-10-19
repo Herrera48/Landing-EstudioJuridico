@@ -15,15 +15,19 @@
   <link rel="preload" href="assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
   <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__landingReady)document.documentElement.classList.remove("js")},3000)</script>
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"LegalService","name":"Estudio Jurídico Bonzani Rinaldi & Asociados","telephone":"+543512086810","email":"info@estudiobonzanirinaldi.online","url":"https://estudiobonzanirinaldi.online/","address":{"@type":"PostalAddress","streetAddress":"Arturo M. Bas 54, PB, oficina 6","addressLocality":"Córdoba","addressRegion":"Córdoba","postalCode":"X5000KLB","addressCountry":"AR"},"geo":{"@type":"GeoCoordinates","latitude":-31.4141479,"longitude":-64.1924365},"hasMap":"https://share.google/bdxVpSeGXEgWI7CLY","areaServed":"Córdoba, Argentina","knowsAbout":["Consorcios e inmuebles","Derecho laboral","Derecho de daños","Derecho de salud"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"}]}</script>
+  <script src="motion.js" defer></script>
+  <script src="reviews.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"LegalService","name":"Estudio Jurídico Bonzani Rinaldi & Asociados","url":"https://estudiobonzanirinaldi.online/","address":{"@type":"PostalAddress","streetAddress":"Arturo M. Bas 54, PB, oficina 6","addressLocality":"Córdoba","addressRegion":"Córdoba","postalCode":"X5000KLB","addressCountry":"AR"},"geo":{"@type":"GeoCoordinates","latitude":-31.4141479,"longitude":-64.1924365},"hasMap":"https://share.google/bdxVpSeGXEgWI7CLY","areaServed":"Córdoba, Argentina","knowsAbout":["Consorcios e inmuebles","Derecho laboral","Derecho de daños","Derecho de salud"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"}]}</script>
 </head>
 <body>
 <!-- Iconos SVG (Lucide, licencia ISC · Simple Icons, CC0) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
+    <symbol id="i-google-color" viewBox="0 0 48 48"><path fill="#4285F4" d="M43.61 24.46c0-1.36-.12-2.66-.35-3.92H24v7.42h11a9.4 9.4 0 0 1-4.08 6.18v5.14h6.61c3.87-3.56 6.08-8.81 6.08-14.82z"/><path fill="#34A853" d="M24 44c5.4 0 9.92-1.79 13.23-4.84l-6.61-5.14c-1.84 1.23-4.19 1.97-6.62 1.97-5.09 0-9.4-3.44-10.94-8.06H6.23v5.3A20 20 0 0 0 24 44z"/><path fill="#FBBC05" d="M13.06 27.93A12 12 0 0 1 12.44 24c0-1.37.22-2.7.62-3.93v-5.3H6.23A20 20 0 0 0 4 24c0 3.23.77 6.28 2.23 9.23z"/><path fill="#EA4335" d="M24 12c2.94 0 5.57 1.01 7.65 2.99l5.74-5.74C33.92 6.02 29.4 4 24 4A20 20 0 0 0 6.23 14.77l6.83 5.3C14.6 15.44 18.91 12 24 12z"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
@@ -42,6 +46,7 @@
     <symbol id="i-star" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></symbol>
     <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
     <symbol id="i-google" viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
   </defs>
 </svg>
 
@@ -62,7 +67,6 @@
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <div class="nav-mobile-extra">
-        <a class="nav-contact" href="tel:+543512086810" data-contact="tel"><svg class="icon"><use href="#i-phone"/></svg><span data-contact-text="tel">0351 208-6810</span></a>
         <a class="nav-contact" href="#contacto"><svg class="icon"><use href="#i-pin"/></svg><span>Arturo M. Bas 54 · Córdoba</span></a>
       </div>
     </nav>
@@ -81,102 +85,78 @@
 <main id="contenido">
 
   <!-- PORTADA -->
-  <section id="inicio" class="hero" aria-labelledby="hero-title">
+  <section id="inicio" class="hero hero--foto" aria-labelledby="hero-title" style="--hero-focus: 50% 48%">
     <div class="hero-media" aria-hidden="true">
-      <!--
-        FOTO DE PORTADA (pendiente). Cuando esté descargada y optimizada en
-        assets/img/, reemplazá este comentario por:
-
-        <picture>
-          <source type="image/webp" srcset="assets/img/cordoba-portada-960.webp 960w, assets/img/cordoba-portada-1920.webp 1920w" sizes="100vw">
-          <img src="assets/img/cordoba-portada-1920.jpg" alt="" width="1920" height="1280" fetchpriority="high" decoding="async">
-        </picture>
-
-        y agregá la clase "hero--foto" a la <section class="hero">.
-        Completá también el crédito en .hero-credit y en el footer.
-      -->
-      <span class="hero-watermark"><span class="m-b">B</span><span class="m-r">R</span></span>
+      <img src="assets/img/palacio-justicia.jpg" alt="" width="1280" height="678" fetchpriority="high" decoding="async">
     </div>
+    <span class="hero-signature" aria-hidden="true"><span>B</span><span>R</span></span>
 
     <div class="container hero-content">
-      <p class="eyebrow eyebrow-light reveal">Córdoba · Argentina</p>
-      <h1 id="hero-title" class="hero-title reveal">
-        <span class="hero-kicker">Estudio Jurídico</span>
-        Bonzani <em>Rinaldi</em>
-        <span class="hero-kicker hero-kicker-end">&amp; Asociados</span>
-      </h1>
-      <p class="hero-lead reveal">Asesoramiento cercano y un compromiso personal con cada consulta.</p>
-
-      <div class="hero-actions reveal">
+      <h1 id="hero-title" class="hero-title reveal"><span>Bonzani</span> <span>Rinaldi</span></h1>
+      <a class="hero-address reveal" href="https://share.google/bdxVpSeGXEgWI7CLY" data-contact="maps" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+        <span>Arturo M. Bas 54 <span class="address-divider">·</span> PB, oficina 6</span>
+        <span class="sr-only">(abre Google Maps)</span>
+      </a>
+      <div class="hero-actions">
         <button class="btn btn-primary btn-lg" type="button" data-consulta>Quiero asesoramiento</button>
-        <a class="hero-rating" href="https://share.google/bdxVpSeGXEgWI7CLY" data-contact="google" target="_blank" rel="noopener noreferrer">
-          <span class="rating-stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
-          <span><strong data-contact-text="rating">5,0</strong> en Google</span>
+        <a class="hero-rating reveal" href="https://share.google/bdxVpSeGXEgWI7CLY" data-contact="google" target="_blank" rel="noopener noreferrer">
+          <svg class="google-brand-logo" aria-hidden="true" viewBox="0 0 48 48"><use href="#i-google-color"/></svg>
+          <span class="hero-google-copy"><span class="hero-google-label">Google Reviews</span><span class="hero-google-score"><strong data-contact-text="rating">5,0</strong><span class="rating-stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span></span>
           <span class="sr-only">(puntuación de 5 sobre 5. Abre la ficha de Google en una pestaña nueva)</span>
         </a>
       </div>
 
-      <a class="hero-address reveal" href="https://share.google/bdxVpSeGXEgWI7CLY" data-contact="maps" target="_blank" rel="noopener noreferrer">
-        <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
-        <span>Arturo M. Bas 54 · PB, oficina 6 · Córdoba</span>
-        <span class="sr-only">(abre Google Maps)</span>
-      </a>
     </div>
-    <p class="hero-credit" hidden></p>
   </section>
 
   <!-- ÁREAS DE PRÁCTICA -->
   <section id="areas" class="section areas" aria-labelledby="areas-title">
     <div class="container">
       <header class="section-head reveal">
-        <p class="eyebrow">Cómo podemos ayudarte</p>
         <h2 id="areas-title">Áreas de práctica</h2>
-        <p class="section-intro">Cada consulta merece tiempo, claridad y una mirada profesional. Elegí el área para empezar tu consulta.</p>
+        <p class="section-intro">Seleccioná el área para realizar tu consulta.</p>
       </header>
 
       <ul class="practice-list" role="list">
         <li class="reveal">
           <button class="practice" type="button" data-consulta="Consorcios e inmuebles">
-            <span class="practice-num" aria-hidden="true">01</span>
-            <svg class="practice-icon" aria-hidden="true"><use href="#i-building"/></svg>
+            <span class="practice-icon-wrap"><svg class="practice-icon" aria-hidden="true"><use href="#i-building"/></svg></span>
             <span class="practice-body">
-              <span class="practice-title">Consorcios e inmuebles</span>
+              <span class="practice-title">Consorcios <span>e inmuebles</span></span>
               <span class="practice-text">Propiedad horizontal, administración de consorcios y relaciones inmobiliarias.</span>
             </span>
-            <span class="practice-cta">Consultar</span>
+            <span class="practice-cta"><span>Consultar</span><span class="practice-arrow" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span></span>
           </button>
         </li>
         <li class="reveal">
           <button class="practice" type="button" data-consulta="Derecho laboral">
-            <span class="practice-num" aria-hidden="true">02</span>
-            <svg class="practice-icon" aria-hidden="true"><use href="#i-briefcase"/></svg>
+            <span class="practice-icon-wrap"><svg class="practice-icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
             <span class="practice-body">
-              <span class="practice-title">Derecho laboral</span>
+              <span class="practice-title">Derecho <span>laboral</span></span>
               <span class="practice-text">Orientación ante conflictos de trabajo y consultas sobre derechos laborales.</span>
             </span>
-            <span class="practice-cta">Consultar</span>
+            <span class="practice-cta"><span>Consultar</span><span class="practice-arrow" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span></span>
           </button>
         </li>
         <li class="reveal">
           <button class="practice" type="button" data-consulta="Derecho de daños">
-            <span class="practice-num" aria-hidden="true">03</span>
-            <svg class="practice-icon" aria-hidden="true"><use href="#i-scale"/></svg>
+            <span class="practice-icon-wrap"><svg class="practice-icon" aria-hidden="true"><use href="#i-scale"/></svg></span>
             <span class="practice-body">
-              <span class="practice-title">Derecho de daños</span>
+              <span class="practice-title">Derecho <span>de daños</span></span>
               <span class="practice-text">Responsabilidad civil y reclamos por daños y perjuicios.</span>
             </span>
-            <span class="practice-cta">Consultar</span>
+            <span class="practice-cta"><span>Consultar</span><span class="practice-arrow" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span></span>
           </button>
         </li>
         <li class="reveal">
           <button class="practice" type="button" data-consulta="Derecho de salud">
-            <span class="practice-num" aria-hidden="true">04</span>
-            <svg class="practice-icon" aria-hidden="true"><use href="#i-health"/></svg>
+            <span class="practice-icon-wrap"><svg class="practice-icon" aria-hidden="true"><use href="#i-health"/></svg></span>
             <span class="practice-body">
-              <span class="practice-title">Derecho de salud</span>
+              <span class="practice-title">Derecho <span>de salud</span></span>
               <span class="practice-text">Prestaciones, cobertura y acceso a tratamientos de salud.</span>
             </span>
-            <span class="practice-cta">Consultar</span>
+            <span class="practice-cta"><span>Consultar</span><span class="practice-arrow" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span></span>
           </button>
         </li>
       </ul>
@@ -186,19 +166,14 @@
   <!-- CLIENTES -->
   <section class="clients" aria-labelledby="clientes-title">
     <div class="container clients-head reveal">
-      <h2 id="clientes-title" class="eyebrow">Empresas y organizaciones que confían en el estudio</h2>
-      <button class="clients-toggle" type="button" aria-pressed="false" hidden>
-        <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
-        <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
-        <span data-toggle-label>Pausar</span>
-      </button>
+      <h2 id="clientes-title">Confían en el estudio</h2>
     </div>
     <!--
       Para actualizar clientes, editá esta lista. Cuando haya un logotipo
       autorizado, reemplazá el texto del <li> por:
       <img src="assets/clientes/archivo.svg" alt="Nombre del cliente" height="40">
     -->
-    <div class="marquee reveal" data-marquee>
+    <div class="marquee reveal" data-marquee tabindex="0" aria-label="Empresas y organizaciones que confían en el estudio">
       <ul class="marquee-list" role="list">
         <li>Quality <b>Center</b></li>
         <li>Cámara de la <b>Propiedad Horizontal</b></li>
@@ -211,37 +186,29 @@
 
   <!-- NOSOTROS -->
   <section id="nosotros" class="section about" aria-labelledby="nosotros-title">
-    <div class="container about-grid">
-      <div class="about-copy reveal">
-        <p class="eyebrow">Sobre nosotros</p>
-        <h2 id="nosotros-title">Un trato cercano.<br>Un compromiso <em>personal.</em></h2>
-        <p>Detrás de cada consulta hay una persona, un proyecto o una decisión importante.</p>
-        <p>En Bonzani Rinaldi te acompañamos con atención directa, escuchando tu situación y ayudándote a entender los próximos pasos.</p>
-      </div>
-
+    <div class="container partners-container">
+      <h2 id="nosotros-title" class="sr-only">Los socios</h2>
       <div class="team">
         <article class="person reveal" data-socio="bonzani">
-          <div class="person-plate" aria-hidden="true"><span>GB</span></div>
+          <div class="person-plate" role="img" aria-label="Espacio reservado para la fotografía de Germán Bonzani"><svg class="portrait-outline" viewBox="0 0 240 280" aria-hidden="true"><circle cx="120" cy="93" r="43"/><path d="M35 280v-35c0-57 38-91 85-91s85 34 85 91v35"/></svg></div>
           <div class="person-info">
             <p class="person-role">Socio</p>
-            <h3 class="person-name">Germán D. Bonzani</h3>
+            <div class="person-heading"><h3 class="person-name">Germán D. Bonzani</h3><span data-person-linkedin><button class="linkedin-btn" disabled title="LinkedIn pendiente de conectar" aria-label="LinkedIn de Germán Bonzani, pendiente de conectar"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></button></span></div>
             <p class="person-meta">Abogado · UNC</p>
-            <p class="person-focus">Derecho inmobiliario y asesoramiento empresarial.</p>
             <div class="person-actions" data-person-actions>
-              <button class="btn btn-ghost btn-sm" type="button" data-consulta data-socio-ref="bonzani">Consultar por Germán</button>
+              <button class="btn btn-ghost btn-sm btn-wa" disabled title="WhatsApp personal pendiente de conectar"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp</button><button class="btn btn-ghost btn-sm" disabled title="Email personal pendiente de conectar"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email</button>
             </div>
           </div>
         </article>
 
         <article class="person reveal" data-socio="rinaldi">
-          <div class="person-plate" aria-hidden="true"><span>DR</span></div>
+          <div class="person-plate" role="img" aria-label="Espacio reservado para la fotografía de Diego Rinaldi"><svg class="portrait-outline" viewBox="0 0 240 280" aria-hidden="true"><circle cx="120" cy="93" r="43"/><path d="M35 280v-35c0-57 38-91 85-91s85 34 85 91v35"/></svg></div>
           <div class="person-info">
             <p class="person-role">Socio</p>
-            <h3 class="person-name">Diego D. Rinaldi Bueno</h3>
+            <div class="person-heading"><h3 class="person-name">Diego D. Rinaldi Bueno</h3><span data-person-linkedin><button class="linkedin-btn" disabled title="LinkedIn pendiente de conectar" aria-label="LinkedIn de Diego Rinaldi, pendiente de conectar"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></button></span></div>
             <p class="person-meta">Abogado · UNC</p>
-            <p class="person-focus">Derecho procesal civil, laboral y comercial.</p>
             <div class="person-actions" data-person-actions>
-              <button class="btn btn-ghost btn-sm" type="button" data-consulta data-socio-ref="rinaldi">Consultar por Diego</button>
+              <button class="btn btn-ghost btn-sm btn-wa" disabled title="WhatsApp personal pendiente de conectar"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp</button><button class="btn btn-ghost btn-sm" disabled title="Email personal pendiente de conectar"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email</button>
             </div>
           </div>
         </article>
@@ -253,46 +220,36 @@
   <section id="resenas" class="section reviews" aria-labelledby="resenas-title">
     <div class="container">
       <header class="reviews-head reveal">
-        <div>
-          <p class="eyebrow">Experiencias que nos acompañan</p>
-          <h2 id="resenas-title">Qué dicen nuestros clientes</h2>
-        </div>
+        <span class="reviews-title-shadow" aria-hidden="true">Testimonios</span>
+        <h2 id="resenas-title">Testimonios</h2>
+        <p>Qué dicen nuestros clientes</p>
+      </header>
+      <div class="reviews-summary reveal">
         <a class="rating-badge" href="https://share.google/bdxVpSeGXEgWI7CLY" data-contact="google" target="_blank" rel="noopener noreferrer">
-          <svg class="rating-g" aria-hidden="true"><use href="#i-google"/></svg>
-          <span class="rating-score" data-contact-text="rating">5,0</span>
-          <span class="rating-detail">
+          <svg class="google-brand-logo" aria-hidden="true" viewBox="0 0 48 48"><use href="#i-google-color"/></svg>
+          <span class="rating-detail"><span class="rating-label">Google <b>Reseñas</b></span><span class="rating-score-row"><span class="rating-score" data-contact-text="rating">5,0</span>
             <span class="rating-stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
-            <span>Puntuación en Google</span>
-          </span>
+          </span></span>
           <span class="sr-only">de 5. Ver la ficha en Google (pestaña nueva)</span>
         </a>
-      </header>
-
-      <div class="quotes">
-        <figure class="quote reveal">
-          <blockquote><p>Excelentes profesionales de gran trayectoria, experiencia y excelente valor humano ante todo!</p></blockquote>
-          <figcaption>
-            <span class="quote-author">Adrian L. Garcia Lopez</span>
-            <span class="quote-source">Reseña en Google · <span class="rating-stars rating-stars-sm" role="img" aria-label="5 de 5 estrellas"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span></span>
-          </figcaption>
-        </figure>
-        <figure class="quote quote-short reveal">
-          <blockquote><p>Excelentes!</p></blockquote>
-          <figcaption>
-            <span class="quote-author">pat GONZALEZ</span>
-            <span class="quote-source">Reseña en Google · <span class="rating-stars rating-stars-sm" role="img" aria-label="5 de 5 estrellas"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span></span>
-          </figcaption>
-        </figure>
+        <a class="btn btn-google" href="https://share.google/bdxVpSeGXEgWI7CLY" data-contact="review" target="_blank" rel="noopener noreferrer">Dejanos una reseña en Google<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
       </div>
 
-      <div class="review-cta reveal">
-        <p>¿Te asesoramos? Tu opinión ayuda a otras personas a encontrarnos.</p>
-        <a class="btn btn-dark" href="https://share.google/bdxVpSeGXEgWI7CLY" data-contact="review" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" aria-hidden="true"><use href="#i-google"/></svg>
-          Dejar una reseña en Google
-          <span class="sr-only">(abre Google en una pestaña nueva)</span>
-        </a>
+      <div class="google-reviews-grid" id="google-reviews-list" aria-label="Reseñas de clientes en Google">
+        <article class="review-card reveal">
+          <div class="review-card-heading"><span class="review-avatar" aria-hidden="true">AG</span><a class="review-author" href="https://share.google/bdxVpSeGXEgWI7CLY" target="_blank" rel="noopener noreferrer">Adrian L. Garcia Lopez</a></div>
+          <span class="review-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</span>
+          <blockquote>“excelentes profesionales de gran trayectoria, experiencia y excelente valor humano ante todo!”</blockquote>
+          <a class="review-source" href="https://share.google/bdxVpSeGXEgWI7CLY" target="_blank" rel="noopener noreferrer"><svg class="google-source-logo" viewBox="0 0 48 48" aria-hidden="true"><use href="#i-google-color"/></svg><span>Publicado en<strong>Google</strong></span></a>
+        </article>
+        <article class="review-card reveal">
+          <div class="review-card-heading"><span class="review-avatar" aria-hidden="true">PG</span><a class="review-author" href="https://share.google/bdxVpSeGXEgWI7CLY" target="_blank" rel="noopener noreferrer">pat GONZALEZ</a></div>
+          <span class="review-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</span>
+          <blockquote>“Excelentes !”</blockquote>
+          <a class="review-source" href="https://share.google/bdxVpSeGXEgWI7CLY" target="_blank" rel="noopener noreferrer"><svg class="google-source-logo" viewBox="0 0 48 48" aria-hidden="true"><use href="#i-google-color"/></svg><span>Publicado en<strong>Google</strong></span></a>
+        </article>
       </div>
+
     </div>
   </section>
 
@@ -300,7 +257,6 @@
   <section id="contacto" class="section contact" aria-labelledby="contacto-title">
     <div class="container contact-grid">
       <div class="contact-copy reveal">
-        <p class="eyebrow eyebrow-light">Estamos cerca</p>
         <h2 id="contacto-title">Conversemos sobre <em>tu caso.</em></h2>
         <p class="contact-lead">Coordiná una consulta con el estudio. Te respondemos para confirmar día y horario.</p>
 
@@ -312,14 +268,6 @@
           <div>
             <dt><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Horario</dt>
             <dd><span data-contact-text="dias">Lunes a viernes</span><small data-contact-text="horas">9:00 a 18:00 h · Con cita previa</small></dd>
-          </div>
-          <div>
-            <dt><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Teléfono</dt>
-            <dd><a href="tel:+543512086810" data-contact="tel"><span data-contact-text="tel">0351 208-6810</span></a></dd>
-          </div>
-          <div>
-            <dt><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email</dt>
-            <dd><a href="mailto:info@estudiobonzanirinaldi.online" data-contact="email"><span data-contact-text="email">info@estudiobonzanirinaldi.online</span></a></dd>
           </div>
         </dl>
 
@@ -360,8 +308,6 @@
       <h2 class="footer-title">Encontranos</h2>
       <ul role="list">
         <li><a class="footer-link" href="https://share.google/bdxVpSeGXEgWI7CLY" data-contact="maps" target="_blank" rel="noopener noreferrer">Arturo M. Bas 54, PB, of. 6<br>Córdoba, Argentina</a></li>
-        <li><a class="footer-link" href="tel:+543512086810" data-contact="tel"><span data-contact-text="tel">0351 208-6810</span></a></li>
-        <li><a class="footer-link" href="mailto:info@estudiobonzanirinaldi.online" data-contact="email"><span data-contact-text="email">info@estudiobonzanirinaldi.online</span></a></li>
       </ul>
     </div>
     <nav aria-label="El estudio">
@@ -380,10 +326,9 @@
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5493512086810" data-contact="whatsapp" target="_blank" rel="noopener noreferrer">
+<button class="wa-float" type="button" data-consulta data-contact="whatsapp" aria-label="WhatsApp del estudio, próximamente">
   <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>
-  <span class="sr-only">Escribir al estudio por WhatsApp (pestaña nueva)</span>
-</a>
+</button>
 
 <!-- FORMULARIO DE CONSULTA -->
 <dialog id="consulta" class="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
@@ -399,7 +344,7 @@
       </button>
     </div>
 
-    <p id="dialog-desc" class="dialog-desc">Completá tus datos y preparamos el mensaje por vos. <strong>Nada se envía desde esta página:</strong> se abre WhatsApp o tu correo con la consulta escrita, para que la revises y la envíes. El estudio te responde para confirmar día y horario.</p>
+    <p id="dialog-desc" class="dialog-desc">Estamos actualizando los canales de contacto. Pronto vas a poder coordinar tu consulta desde aquí.</p>
 
     <form id="consulta-form" class="form" novalidate>
       <input type="hidden" name="socio" id="f-socio">
@@ -448,11 +393,11 @@
       </div>
 
       <div class="form-actions">
-        <button class="btn btn-primary btn-block" type="submit" value="whatsapp">
-          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Preparar mensaje en WhatsApp
+        <button class="btn btn-primary btn-block" type="submit" value="whatsapp" disabled>
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp · Próximamente
         </button>
-        <button class="btn btn-ghost btn-block" type="submit" value="email">
-          <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Preparar email
+        <button class="btn btn-ghost btn-block" type="submit" value="email" disabled>
+          <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email · Próximamente
         </button>
       </div>
       <p class="form-status" id="form-status" role="status" aria-live="polite"></p>

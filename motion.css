@@ -1,0 +1,57 @@
+/* Progressive enhancement: all content remains visible without motion.js. */
+.js .reveal,
+.js .reveal.is-in,
+.reveal-motion-owned {
+  opacity: 1;
+  transform: none;
+}
+
+/* These classes are applied only after both observers start successfully. */
+.motion-reveal.motion-pending {
+  opacity: 0;
+  translate: 0 30px;
+  scale: .985;
+  transition: none;
+}
+
+.motion-reveal.motion-pending.motion-visible {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  transition-property: opacity, translate, scale, transform, color, background-color, border-color, box-shadow;
+  transition-duration: 780ms, 860ms, 860ms, 220ms, 180ms, 180ms, 180ms, 220ms;
+  transition-timing-function: cubic-bezier(.19, 1, .22, 1);
+  transition-delay: var(--motion-delay, 0ms), var(--motion-delay, 0ms), var(--motion-delay, 0ms), 0ms, 0ms, 0ms, 0ms, 0ms;
+}
+
+.motion-reveal.motion-pending.motion-visible:disabled {
+  opacity: .55;
+}
+
+.motion-reveal.motion-pending.motion-immediate {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal.motion-pending,
+  .motion-reveal.motion-pending.motion-visible {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    transition: none;
+  }
+  .motion-reveal.motion-pending:disabled { opacity: .55; }
+}
+
+@media print {
+  .motion-reveal.motion-pending,
+  .motion-reveal.motion-pending.motion-visible {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+    transition: none !important;
+  }
+}
